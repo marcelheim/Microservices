@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "Authentication.Protos";
+
+package authentication;
+
+service Authentication {
+  rpc Authenticate (AuthenticationRequest) returns (AuthenticationResponse);
+  rpc ValidateToken (ValidationRequest) returns (ValidationResponse);
+}
+
+message AuthenticationRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message AuthenticationResponse {
+  string token = 1;
+}
+
+message ValidationRequest {
+  string token = 1;
+}
+
+message ValidationResponse {
+  string username = 1;
+  bool validated = 2;
+}

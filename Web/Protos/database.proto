@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "Web.Protos";
+
+package database;
+
+message Empty {}
+
+service UserDatabase {
+  rpc GetUser (GetUserRequest) returns (UserResponse);
+}
+
+message GetUserRequest {
+  string username = 1;
+}
+
+// The response message containing the greetings.
+message UserResponse {
+  string username = 1;
+  string password = 2;
+}
+
+service SecretDatabase {
+  rpc GetSecrets (Empty) returns (SecretsResponse);
+}
+
+message SecretsResponse {
+  repeated string secrets = 1;
+}
