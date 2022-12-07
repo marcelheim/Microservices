@@ -8,7 +8,5 @@ public class DatabaseContext: DbContext {
     : base(options)
   {
   }
-
-  public DbSet<User> Users { get; set; } = default!;
   public DbSet<Secret> Secrets { get; set; } = default!;
 }

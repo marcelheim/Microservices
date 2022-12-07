@@ -4,16 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Database.SeedData;
 
-public class SeedData {
+public static class SeedData {
   public static void Initialize(IServiceProvider serviceProvider)
   {
     using var context = new DatabaseContext(serviceProvider.GetRequiredService<DbContextOptions<DatabaseContext>>());
-
-    if (!context.Users.Any()) context.Users.Add(new User()
-    {
-      Username = "tobi",
-      Password = "ilovebbc"
-    });
 
     if(!context.Secrets.Any()) context.Secrets.Add(new Secret()
     {

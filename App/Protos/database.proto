@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "Database.Protos";
+option csharp_namespace = "App.Protos";
 
 package database;
 
