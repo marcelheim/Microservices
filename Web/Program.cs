@@ -23,8 +23,8 @@ builder.Services
     })
     .AddGitHub(githubOptions =>
     {
-        githubOptions.ClientId = builder.Configuration["Authentication:GitHub:ClientId"];
-        githubOptions.ClientSecret = builder.Configuration["Authentication:GitHub:ClientSecret"];
+        //githubOptions.ClientId = Konfiguration einlesen aus Appsettings
+        //githubOptions.ClientSecret = Konfiguration einlesen aus Appsettings
         githubOptions.CallbackPath = "/signin-github";
         githubOptions.Scope.Add("read:user");
         githubOptions.Events.OnCreatingTicket += context =>
@@ -41,7 +41,7 @@ builder.Services
 
 builder.Services.AddGrpcClient<SecretDatabase.SecretDatabaseClient>(grpcClientFactoryOptions =>
 {
-  grpcClientFactoryOptions.Address = new Uri(builder.Configuration.GetConnectionString("DatabaseService"));
+    grpcClientFactoryOptions.Address = new Uri(builder.Configuration.GetConnectionString("DatabaseService"));
 });
 builder.Services.AddGrpcClient<UserService.UserServiceClient>(grpcClientFactoryOptions =>
 {
@@ -62,7 +62,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication();
+//Use Authentication here ();
 app.UseAuthorization();
 
 app.MapControllers();

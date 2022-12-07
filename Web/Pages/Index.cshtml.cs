@@ -6,25 +6,15 @@ namespace Web.Pages;
 
 public class IndexModel : PageModel
 {
-    private readonly UserService.UserServiceClient _userService;
+    //User Service;
 
-    public IndexModel(UserService.UserServiceClient userService)
-    {
-        _userService = userService;
-    }
+    //Constructor;
 
     private  UserInfoResponse _userInfo = new();
     public UserInfoResponse UserInfo => _userInfo;
 
     public void OnGet()
     {
-        if (HttpContext.User.LoggedIn())
-        {
-            _userInfo = _userService.UserInfo(new UserTokenRequest()
-            {
-                Token = HttpContext.User.AccessToken(),
-                Username = HttpContext.User.Identity?.Name
-            });
-        }
+        //if logged in -> fetch user response;
     }
 }
