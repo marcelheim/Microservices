@@ -11,7 +11,7 @@ public static class SeedData {
 
     if(!context.Secrets.Any()) context.Secrets.Add(new Secret()
     {
-      Text = "Denn das Wort Gottes ist lebendig und kräftig und schärfer als jedes zweischneidige Schwert und dringt durch, bis dass es scheidet Seele und Geist, auch Mark und Bein, und ist ein Richter der Gedanken und Sinne des Herzens"
+      Text = "Denn das Wort Gottes ist lebendig und kräftig und schärfer als jedes zweischneidige Schwert und dringt durch, bis dass es scheidet Seele und Geist, auch Mark und Bein, und ist ein Richter der Gedanken und Sinne des Herzens."
     });
 
     context.SaveChanges();

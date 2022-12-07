@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option csharp_namespace = "Database.Protos";
+
+package database;
+
+message Empty {}
+
+service SecretDatabase {
+  rpc GetSecrets (Empty) returns (SecretsResponse);
+}
+
+message SecretsResponse {
+  repeated string secrets = 1;
+}
