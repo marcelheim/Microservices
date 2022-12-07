@@ -19,7 +19,7 @@ public class UserService : Protos.UserService.UserServiceBase
 
             return new UserInfoResponse()
             {
-                Name = user.Name,
+                Name = user.Name ?? user.Login,
                 AvatarUrl = user.AvatarUrl ?? ""
             };
         });
