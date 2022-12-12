@@ -1,18 +1,22 @@
 version: '3.9'
 
 services:
-  authentication:
-    image: microservices/authentication
-    environment:
-      AppSettings__ConnectionStrings__DatabaseService: 'http://database'
+  user:
+    image: microservices/user
   database:
     image: microservices/database
-    environment:
-      ConnectionStrings__DatabaseService: 'abc'
   web:
     image: microservices/web
     environment:
-      AppSettings__ConnectionStrings__AuthenticationService: 'http://authentication'
-      AppSettings__ConnectionStrings__DatabaseService: 'http://database'
+      Authentication__GitHub__ClientId: 'dfbd86477ff063ca7f4a'
+      Authentication__GitHub__ClientSecret: '8859f810360765414fa84f2f5f16228ee0b4464a'
+      ConnectionStrings__DatabaseService: 'http://database:80'
+      ConnectionStrings__UserService: 'http://user:80'
+  proxy:
+    image: caddy:2
     ports:
-      - 8080:80
+      # - 80:80
+      # - 443:443
+      - 8443:443
+    volumes:
+    - ./Caddyfile:/etc/caddy/Caddyfile:ro

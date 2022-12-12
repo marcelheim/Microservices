@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Database.Protos;
+using Microsoft.AspNetCore.HttpOverrides;
 using User.Protos;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,9 +21,12 @@ builder.Services
         cookieOptions.LoginPath = "/signin";
         // set the path for the sign out
         cookieOptions.LogoutPath = "/signout";
+        cookieOptions.Cookie.SameSite = SameSiteMode.Strict;
+        cookieOptions.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     })
     .AddGitHub(githubOptions =>
     {
+        githubOptions.CorrelationCookie.SecurePolicy = CookieSecurePolicy.Always;
         githubOptions.ClientId = builder.Configuration["Authentication:GitHub:ClientId"];
         githubOptions.ClientSecret = builder.Configuration["Authentication:GitHub:ClientSecret"];
         githubOptions.CallbackPath = "/signin-github";
@@ -57,7 +61,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+  ForwardedHeaders = ForwardedHeaders.XForwardedProto
+});
 app.UseStaticFiles();
 
 app.UseRouting();
