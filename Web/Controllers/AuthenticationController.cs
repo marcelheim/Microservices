@@ -8,12 +8,18 @@ public class AuthenticationController: Controller {
   [HttpGet("signin")]
   public IActionResult Signin([FromQuery] string returnUrl)
   {
-    //return Github Authentication Challenge;
+    return Challenge(new AuthenticationProperties
+    {
+      RedirectUri = Url.IsLocalUrl(returnUrl) ? returnUrl : "/"
+    }, "GitHub");
   }
 
   [HttpGet("signout")]
   public async Task Signout()
   {
-    //await Signout;
+    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme, new AuthenticationProperties()
+    {
+      RedirectUri = "/"
+    });
   }
 }

@@ -5,5 +5,9 @@
 }
 
 <div class="text-center">
-    <!--Display UserInfo and avatar if logged in-->
+    <h1 class="display-4">Hello @Model.UserInfo?.Name</h1>
+    @if (@Model.UserInfo?.AvatarUrl.Length > 0)
+    {
+        <img class="img-thumbnail w-25" src="@Model.UserInfo?.AvatarUrl" alt=""/>
+    }
 </div>

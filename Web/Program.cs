@@ -27,8 +27,8 @@ builder.Services
     .AddGitHub(githubOptions =>
     {
         githubOptions.CorrelationCookie.SecurePolicy = CookieSecurePolicy.Always;
-        //githubOptions.ClientId = Konfiguration einlesen aus Appsettings
-        //githubOptions.ClientSecret = Konfiguration einlesen aus Appsettings
+        githubOptions.ClientId = builder.Configuration["Authentication:GitHub:ClientId"];
+        githubOptions.ClientSecret = builder.Configuration["Authentication:GitHub:ClientSecret"];
         githubOptions.CallbackPath = "/signin-github";
         githubOptions.Scope.Add("read:user");
         githubOptions.Events.OnCreatingTicket += context =>
@@ -69,7 +69,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-//Use Authentication here ();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

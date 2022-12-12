@@ -1,4 +1,3 @@
-using Octokit;
 using User.Services;
 
 var builder = WebApplication.CreateBuilder(args);

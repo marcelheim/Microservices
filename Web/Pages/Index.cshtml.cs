@@ -1,4 +1,6 @@
-﻿using Web.Models;
+﻿
+
+using Web.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using User.Protos;
 
@@ -6,15 +8,25 @@ namespace Web.Pages;
 
 public class IndexModel : PageModel
 {
-    //User Service;
+    private readonly UserService.UserServiceClient _userService;
 
-    //Constructor;
+    public IndexModel(UserService.UserServiceClient userService)
+    {
+        _userService = userService;
+    }
 
     private  UserInfoResponse _userInfo = new();
     public UserInfoResponse UserInfo => _userInfo;
 
     public void OnGet()
     {
-        //if logged in -> fetch user response;
+        if (HttpContext.User.LoggedIn())
+        {
+            _userInfo = _userService.UserInfo(new UserTokenRequest()
+            {
+                Token = HttpContext.User.AccessToken(),
+                Username = HttpContext.User.Identity?.Name
+            });
+        }
     }
 }
