@@ -28,14 +28,7 @@
                     </li>
                 </ul>
                 <div>
-                    @if (@Context.User.LoggedIn())
-                    {
-                        <a class="btn btn-outline-danger" asp-controller="Authentication" asp-action="Signout">Logout</a>
-                    }
-                    else
-                    {
-                        <a class="btn btn-outline-success" asp-controller="Authentication" asp-action="Signin">Login with GitHub</a>
-                    }
+                    <!--Show login/logout button if logged out/logged in-->
                 </div>
             </div>
         </div>

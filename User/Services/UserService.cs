@@ -10,18 +10,7 @@ public class UserService : Protos.UserService.UserServiceBase
     {
         return Task.Run(async () =>
         {
-            var client = new GitHubClient(new ProductHeaderValue("test"))
-            {
-                Credentials = new(request.Token)
-            };
-
-            var user = await client.User.Get(request.Username);
-
-            return new UserInfoResponse()
-            {
-                Name = user.Name ?? user.Login,
-                AvatarUrl = user.AvatarUrl ?? ""
-            };
+            //fetch and return user info from Github-API;
         });
     }
 }
