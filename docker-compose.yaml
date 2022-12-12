@@ -8,8 +8,8 @@ services:
   web:
     image: microservices/web
     environment:
-      Authentication__GitHub__ClientId: 'dfbd86477ff063ca7f4a'
-      Authentication__GitHub__ClientSecret: '8859f810360765414fa84f2f5f16228ee0b4464a'
+      Authentication__GitHub__ClientId: '${GitHub__ClientId}'
+      Authentication__GitHub__ClientSecret: '${GitHub__ClientSecret}'
       ConnectionStrings__DatabaseService: 'http://database:80'
       ConnectionStrings__UserService: 'http://user:80'
   proxy:
