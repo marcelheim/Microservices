@@ -4,26 +4,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Web.Pages;
 
-[Authorize]
+//Autorize Annotation []
 public class Secrets : PageModel
 {
-    private readonly SecretDatabase.SecretDatabaseClient _secretDatabase;
+    //Database Client;
+
     private List<String> _secrets = new();
-    
     public List<String> SecretsList => _secrets;
 
-    public Secrets(SecretDatabase.SecretDatabaseClient secretDatabase)
-    {
-        _secretDatabase = secretDatabase;
-    }
+    //Constructor;
 
     public void OnGet()
     {
-        var secretsResponse = _secretDatabase.GetSecrets(new Empty());
-
-        foreach (var x in secretsResponse.Secrets)
-        {
-            _secrets.Add(x);
-        }
+        //fetch secrets;
     }
 }
