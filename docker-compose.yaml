@@ -2,11 +2,11 @@ version: '3.9'
 
 services:
   user:
-    image: microservices/user
+    image: microservices.user
   database:
-    image: microservices/database
+    image: microservices.database
   web:
-    image: microservices/web
+    image: microservices.web
     environment:
       Authentication__GitHub__ClientId: '${GitHub__ClientId}'
       Authentication__GitHub__ClientSecret: '${GitHub__ClientSecret}'
