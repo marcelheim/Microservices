@@ -8,12 +8,14 @@ public class AuthenticationController: Controller {
   [HttpGet("signin")]
   public IActionResult Signin([FromQuery] string returnUrl)
   {
+    throw new NotImplementedException();
     //return Github Authentication Challenge;
   }
 
   [HttpGet("signout")]
   public async Task Signout()
   {
+    throw new NotImplementedException();
     //await Signout;
   }
 }

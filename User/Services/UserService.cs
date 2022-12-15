@@ -10,7 +10,13 @@ public class UserService : Protos.UserService.UserServiceBase
     {
         return Task.Run(async () =>
         {
-            //fetch and return user info from Github-API;
+          throw new NotImplementedException();
+          //fetch and return user info from Github-API;
+          return new UserInfoResponse()
+          {
+            Name = "GitHubUserName",
+            AvatarUrl = "GitHubUserAvatarUrl"
+          };
         });
     }
 }
